@@ -7,10 +7,10 @@
     <title>Specific Panther Display</title>
 </head>
 <body>
-    <h1>Display specific panther details</h1>
-    <%= magic %>
     <h2>Display of <%= magic[0].name %></h2>
-    <%= magic[0].id %>
+    <h3>Level: <%= magic[0].level %></h3>
+    <%= magic[0].weapon %>
+    
     <a href="/panthers/edit/<%= magic[0].id %>">Edit?</a>
     <form method="post" action="/panthers/destroy/<%= magic[0].id %>"><input type='submit' value="Delete <%= magic[0].name %>"></form>
     
