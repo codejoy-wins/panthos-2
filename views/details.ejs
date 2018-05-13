@@ -12,5 +12,7 @@
     <h2>Display of <%= magic[0].name %></h2>
     <%= magic[0].id %>
     <a href="/panthers/edit/<%= magic[0].id %>">Edit?</a>
+    <form method="post" action="/panthers/destroy/<%= magic[0].id %>"><input type='submit' value="Delete <%= magic[0].name %>"></form>
+    
 </body>
 </html>

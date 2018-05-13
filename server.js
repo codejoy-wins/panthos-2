@@ -41,7 +41,6 @@ app.get('/', function(req, res){
 		if(err) {
 			console.log('we got an error');
 		} else {
-			console.log('success added panther_at_x');
 			res.render('index', {stuff: panthers});
 		}
 	})
@@ -94,7 +93,7 @@ app.get('/panthers/edit/:id', function(req, res){
 
 app.post('/panthers/:id', function(req, res) {
   console.log("POST DATA", req.body);
-  //Rabbit.update
+  //Panther.update
   Panther.findOne({_id:req.params.id}, function(err, panther){
     panther.name = req.body.name;
 	panther.level = req.body.level;
@@ -113,6 +112,20 @@ app.post('/panthers/:id', function(req, res) {
       }
     })
   })
+});
+
+// POST '/mongooses/destroy/:id' Should delete the mongoose from the database by ID.
+app.post('/panthers/destroy/:id', function(req, res) {
+	console.log('deleting');
+	Panther.remove({_id:req.params.id}, function(err, panther){
+		if(err){
+			console.log('error_z', err);
+		}
+		else{
+			console.log('Panther destroyed', req.params.id);
+			res.redirect('/');
+		}
+	})
 });
 
 app.listen(8000, function(){
