@@ -9,5 +9,8 @@
 <body>
     <h1>Display specific panther details</h1>
     <%= magic %>
+    <h2>Display of <%= magic[0].name %></h2>
+    <%= magic[0].id %>
+    <a href="/panthers/edit/<%= magic[0].id %>">Edit?</a>
 </body>
 </html>

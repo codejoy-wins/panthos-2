@@ -80,6 +80,41 @@ app.post('/panthers', function(req, res){
 	});
 });
 
+app.get('/panthers/edit/:id', function(req, res){
+	Panther.find({_id : req.params.id}, function(err, panther){
+		if(err){
+			console.log("panther/:id error ", err);
+		}
+		else{
+			res.render('edit', {magic: panther});
+		}
+	})
+})
+//problems updating
+
+app.post('/panthers/:id', function(req, res) {
+  console.log("POST DATA", req.body);
+  //Rabbit.update
+  Panther.findOne({_id:req.params.id}, function(err, panther){
+    panther.name = req.body.name;
+	panther.level = req.body.level;
+    panther.weapon = req.body.weapon;
+    console.log(panther.name, " is the new name");
+	console.log(panther.level, " is the new level");
+    console.log(panther.weapon, " is the new weapon");
+    panther.save(function(err) {
+      if(err) {
+        console.log('something went wrong');
+      }
+      else { // else console.log that we did well and then redirect to the root route
+        console.log('successfully updated a panther!');
+        console.log(panther);
+        res.redirect('/');
+      }
+    })
+  })
+});
+
 app.listen(8000, function(){
     console.log("listening on port 8000");
 })
